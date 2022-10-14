@@ -3,7 +3,7 @@
 var gIsModalShown = false
 
 function onInit() {
-    readSearchParams()
+    // readSearchParams()
     renderBooks()
 }
 
@@ -14,7 +14,7 @@ function readSearchParams() {
     elTxt.value = txt
     let maxPrice = params.get('price') || 100
     let minRate = params.get('minRate') || 0
-    let bookId = params.get('bookId')
+    let bookId = params.get('bookId') || ''
     gCurrLang = params.get('lang')
     var elLangSelect = document.querySelector('.lang-select')
     elLangSelect.value = gCurrLang
@@ -31,20 +31,35 @@ function readSearchParams() {
 
 function renderBooks() {
     var books = getBooks()
+    // var strHtmls = books.map(book => {
+    //     return `<tr>
+    //     <td>${book.id}</td>
+    //     <td>${book.name}</td>
+    //     <td>${book.price}&#8362;</td>
+    //     <td>${book.rate}</td>
+    //     <td><button class="control read-btn" onclick="onReadBook('${book.id}')"></button>
+    //     <button class="control update-btn" onclick="onUpdateBook('${book.id}')"></button>
+    //     <button class="control delete-btn" onclick="onDeleteBook('${book.id}')"></button>
+    //     </td>
+    //     </tr>`
+    // })
     var strHtmls = books.map(book => {
-        return `<tr>
-        <td>${book.id}</td>
-        <td>${book.name}</td>
-        <td>${book.price}&#8362;</td>
-        <td>${book.rate}</td>
-        <td><button class="control read-btn" onclick="onReadBook('${book.id}')"></button>
-        <button class="control update-btn" onclick="onUpdateBook('${book.id}')"></button>
-        <button class="control delete-btn" onclick="onDeleteBook('${book.id}')"></button>
-        </td>
-        </tr>`
+        return `<div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${book.name}</h5>
+          <p class="card-text">price : ${book.price}</p>
+          <p class="card-text">rate : ${book.rate}</p>
+          <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary" onclick="onReadBook('${book.id}')">Read</button>
+                 <button type="button" class="btn btn-primary" onclick="onUpdateBook('${book.id}')">Update</button>
+                 <button type="button" class="btn btn-primary" onclick="onDeleteBook('${book.id}')">Delete</button>
+          </div>  
+        </div>
+      </div>`
     })
-  
-    document.querySelector('.books-content').innerHTML = strHtmls.join('')
+
+    document.querySelector('.books-container').innerHTML = strHtmls.join('')
 }
 
 
@@ -54,13 +69,14 @@ function onReadBook(id) {
     openModal(book)
     onSetFilterBy()
 }
+
 function openModal(book) {
+    console.log('first')
     gIsModalShown = true;
     var elModal = document.querySelector('.modal')
-    elModal.querySelector('h3').innerText = book.name
-    elModal.querySelector('h4 span').innerText = book.price
-    elModal.querySelector('h5 span').innerText = book.rate
-    elModal.classList.add('open')
+    elModal.querySelector('.modal-title').innerText = book.name
+    elModal.querySelector('.modal-body').innerText = book.price + book.rate
+    // elModal.classList.remove('hide')
 }
 
 function onUpdateBook(id) {
