@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Book Shop</title>
+</head>
+
+<body onload="onInit()">
+    <div class="container">
+        <h1 data-trans="header">Book Show</h1>
+        <select class="lang-select" onchange="onSetLang(this.value)">
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+        </select>
+        <section class="books-filter">
+            <h2 data-trans="filter-header">Filter</h2>
+            <input data-trans="filter-txt" class="txt-search" type="text" oninput="onSetFilterBy({txt: this.value})"
+                placeholder="Type something..." />
+            <label data-trans="min-rate" for="min-rate">Min Rate</label>
+            <input id="min-rate" type="range" min="0" max="10" value="0"
+                onchange="this.title=this.value;onSetFilterBy({minRate: this.value})" />
+
+            <label data-trans="max-price" for="max-price">Max Price</label>
+            <input type="range" min="0" max="200" value="100"
+                onchange="this.title=this.value;onSetFilterBy({maxPrice: this.value})" />
+            <button data-trans="reset-filters" class="reset-btn" onclick="onResetFilters()">Reset Filters</button>
+        </section>
+        <button data-trans="add-book" class="add-book" onClick="onAddBook()">Add Book</button>
+        <div class="books-container">
+            <table class="books-table">
+                <tr>
+                    <th data-trans="book-id">id</th>
+                    <th data-trans="book-title" onclick="onSortClicked(`name`)">title</th>
+                    <th data-trans="book-price" onclick="onSortClicked(`price`)">price</th>
+                    <th data-trans="book-rate" onclick="onSortClicked(`rate`)">rating</th>
+                    <th data-trans="book-actions">actions</th>
+                </tr>
+                <tbody class="books-content"></tbody>
+
+            </table>
+        </div>
+        <div class="nav-btns">
+            <button data-trans="prev-page" class="prev-page-btn" onClick="onPrevPage()" disabled>Previous Page</button>
+            <button data-trans="next-page" class="next-page-btn" onClick="onNextPage()">Next Page</button>
+        </div>
+    </div>
+    <div class="modal">
+        <h3></h3>
+        <h4>Book Price <span></span> </h4>
+        <h5>Book Rating <span></span> </h5>
+        <div class="counter">
+            <span onClick="onUpdateCounter('-')">-</span>
+            <input class="counter-value" type="number" value="0" min="1" max="10">
+            <span onClick="onUpdateCounter('+')">+</span>
+            <button onClick="onUpdateRating()">Update Rating</button>
+        </div>
+        <br>
+        <button onclick="onCloseModal()">Close</button>
+    </div>
+
+    <script src="js/controller.js"></script>
+    <script src="js/services/i18n.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/utils.service.js"></script>
+    <script src="js/services/books.service.js"></script>
+</body>
+
+</html>

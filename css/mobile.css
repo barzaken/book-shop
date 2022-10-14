@@ -1,0 +1,97 @@
+.container{
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+h1{
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.books-filter{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 20%;
+    text-align: center;
+}
+h2{
+    margin: 0;
+}
+.txt-search{
+    width: 50%;
+    margin: auto;
+}
+.reset-btn{
+    width: 50%;
+    margin: auto;
+}
+
+
+
+
+.add-book{
+    width:25%;
+    margin: 0 auto;
+}
+
+
+
+
+/* .books-container{
+    flex-basis: 55%;
+    display: flex;
+} */
+
+/* .books-table{
+    flex-basis: 100%;
+} */
+
+table,td,th{
+    border: 1px solid black;
+    border-collapse: collapse;
+    table-layout: fixed;
+    text-align: center;
+}
+
+.control{
+    margin: 0 auto;
+    padding: 10%;
+    flex-wrap: nowrap;
+}
+
+.delete-btn{
+    background-color: red;
+}
+.update-btn{
+    background-color: yellow;
+}
+.read-btn{
+    background-color: blue;
+}
+
+
+
+
+
+.nav-btns{
+    margin-top: 10px;
+    flex-basis: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.next-page-btn{
+    flex-basis: 25%;
+    height: 50px;
+}
+
+.prev-page-btn{
+    flex-basis: 25%;
+    height: 50px;
+}
