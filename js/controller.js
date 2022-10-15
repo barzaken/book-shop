@@ -1,11 +1,13 @@
 'use strict'
 
 var gIsModalShown = false
+var gModelView = 'table'
 
 function onInit() {
-    // readSearchParams()
+    readSearchParams()
     renderBooks()
 }
+
 
 function readSearchParams() {
     const params = new URLSearchParams(document.location.search)
@@ -29,35 +31,51 @@ function readSearchParams() {
     doTrans(gCurrLang)
 }
 
+function onSetView(view){
+    gModelView = `${view}`
+    renderBooks()
+}
+
 function renderBooks() {
     var books = getBooks()
-    // var strHtmls = books.map(book => {
-    //     return `<tr>
-    //     <td>${book.id}</td>
-    //     <td>${book.name}</td>
-    //     <td>${book.price}&#8362;</td>
-    //     <td>${book.rate}</td>
-    //     <td><button class="control read-btn" onclick="onReadBook('${book.id}')"></button>
-    //     <button class="control update-btn" onclick="onUpdateBook('${book.id}')"></button>
-    //     <button class="control delete-btn" onclick="onDeleteBook('${book.id}')"></button>
-    //     </td>
-    //     </tr>`
-    // })
+    if(gModelView === "table"){
     var strHtmls = books.map(book => {
-        return `<div class="card" style="width: 18rem;">
-        <img src="" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">${book.name}</h5>
-          <p class="card-text">price : ${book.price}</p>
-          <p class="card-text">rate : ${book.rate}</p>
-          <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-primary" onclick="onReadBook('${book.id}')">Read</button>
-                 <button type="button" class="btn btn-primary" onclick="onUpdateBook('${book.id}')">Update</button>
-                 <button type="button" class="btn btn-primary" onclick="onDeleteBook('${book.id}')">Delete</button>
-          </div>  
-        </div>
-      </div>`
+        return `<tr>
+        <td>${book.id}</td>
+        <td>${book.name}</td>
+        <td>${book.price}&#8362;</td>
+        <td>${book.rate}</td>
+        <td><button class="control read-btn" onclick="onReadBook('${book.id}')"></button>
+        <button class="control update-btn" onclick="onUpdateBook('${book.id}')"></button>
+        <button class="control delete-btn" onclick="onDeleteBook('${book.id}')"></button>
+        </td>
+        </tr>`
     })
+    strHtmls.unshift(`<table class="table table-dark"><thead><tr>
+        <th scope="col" data-trans="book-id">id</th>
+        <th scope="col" data-trans="book-title">title</th>
+        <th scope="col">price</th>
+        <th scope="col">rate</th>
+        <th scope="col">actions</th>
+      </tr> </thead><tbody>`)
+    strHtmls.push(`</tbody></table>`)
+    } else {
+        var strHtmls = books.map(book => {
+            return `<div class="card" style="width: 18rem;">
+            <img src="Img/${book.imgUrl}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">${book.name}</h5>
+              <p class="card-text">price : ${book.price}</p>
+              <p class="card-text">rate : ${book.rate}</p>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary" onclick="onReadBook('${book.id}')">Read</button>
+                     <button type="button" class="btn btn-primary" onclick="onUpdateBook('${book.id}')">Update</button>
+                     <button type="button" class="btn btn-primary" onclick="onDeleteBook('${book.id}')">Delete</button>
+              </div>  
+            </div>
+          </div>`
+        })
+    }
 
     document.querySelector('.books-container').innerHTML = strHtmls.join('')
 }
@@ -71,12 +89,15 @@ function onReadBook(id) {
 }
 
 function openModal(book) {
+
     console.log('first')
     gIsModalShown = true;
-    var elModal = document.querySelector('.modal')
-    elModal.querySelector('.modal-title').innerText = book.name
-    elModal.querySelector('.modal-body').innerText = book.price + book.rate
-    // elModal.classList.remove('hide')
+    var elModal = document.querySelector('.book-modal')
+    elModal.querySelector('h3').innerText = book.name
+    elModal.querySelector('img').src = `img/${book.imgUrl}`
+    elModal.querySelector('h4 span').innerText = book.price
+    elModal.querySelector('h5 span').innerText = book.rate
+    elModal.classList.add('open')
 }
 
 function onUpdateBook(id) {
@@ -99,7 +120,7 @@ function onAddBook() {
 }
 
 function onCloseModal() {
-    document.querySelector('.modal').classList.remove('open')
+    document.querySelector('.book-modal').classList.remove('open')
     gIsModalShown = false
     onSetFilterBy()
 }
@@ -128,8 +149,8 @@ function onSetFilterBy(filterBy) {
 function onSetLang(lang) {
     setLang(lang)
     setDirection(lang)
-    doTrans()
     renderBooks()
+    doTrans()
     onSetFilterBy()
 }
 

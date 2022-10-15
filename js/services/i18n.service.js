@@ -55,6 +55,14 @@ const gTrans = {
     'book-actions': {
         en: 'actions',
         he: 'פעולות'
+    },
+    'view-cards': {
+        en: 'cards',
+        he: 'כרטיסים'
+    },
+    'view-table': {
+        en: 'table',
+        he: 'טבלה'
     }
 }
 

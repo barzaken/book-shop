@@ -72,7 +72,7 @@ function _createBook() {
         id: makeId(),
         name: makeRandName(),
         price: getRandomInt(30, 99),
-        imgUrl: null,
+        imgUrl: `book-cover${getRandomInt(1,8)}.jpg`,
         rate: getRandomInt(0, 10)
     }
 }

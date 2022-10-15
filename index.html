@@ -35,14 +35,23 @@
             </section>
             <button data-trans="add-book" class="add-book" onClick="onAddBook()">Add Book</button>
         </div>
-        <div class="books-container"></div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button data-trans="view-cards" type="button" class="btn btn-secondary" onclick="onSetView('cards')">Cards</button>
+            <button data-trans="view-table"" type="button" class="btn btn-secondary" onclick="onSetView('table')">Table</button>
+          </div>
+
+        <div class="books-container">
+        </div>
         <div class="nav-btns">
             <button data-trans="prev-page" class="prev-page-btn" onClick="onPrevPage()" disabled>Previous Page</button>
             <button data-trans="next-page" class="next-page-btn" onClick="onNextPage()">Next Page</button>
         </div>
     </div>
-    <!-- <div class="modal">
+
+
+    <div class="book-modal">
         <h3></h3>
+        <img></img>
         <h4>Book Price <span></span> </h4>
         <h5>Book Rating <span></span> </h5>
         <div class="counter">
@@ -53,7 +62,7 @@
         </div>
         <br>
         <button onclick="onCloseModal()">Close</button>
-    </div> -->
+    </div>
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
