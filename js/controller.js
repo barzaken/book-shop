@@ -62,7 +62,7 @@ function renderBooks() {
     } else {
         var strHtmls = books.map(book => {
             return `<div class="card" style="width: 18rem;">
-            <img src="Img/${book.imgUrl}" class="card-img-top" alt="...">
+            <img src="img/${book.imgUrl}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">${book.name}</h5>
               <p class="card-text">price : ${book.price}</p>
