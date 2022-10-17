@@ -9,6 +9,7 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Book Shop</title>
 </head>
 
@@ -16,32 +17,48 @@
     <div class="container">
         <h1 class="display-1" data-trans="header">Book Show</h1>
         <div class="books-control">
-            <select class="lang-select" onchange="onSetLang(this.value)">
-                <option value="en">English</option>
-                <option value="he">עברית</option>
-            </select>
             <section class="books-filter">
-                <h2 data-trans="filter-header">Filter</h2>
-                <input data-trans="filter-txt" class="txt-search" type="text" oninput="onSetFilterBy({txt: this.value})"
-                    placeholder="Type something..." />
-                <label data-trans="min-rate" for="min-rate">Min Rate</label>
-                <input id="min-rate" type="range" min="0" max="10" value="0"
-                    onchange="this.title=this.value;onSetFilterBy({minRate: this.value})" />
+                <div class="topnav">
+                    <a class="icon" onclick="onOpenFilters()">
+                        <i data-trans="menu" class="fa fa-bars"> Menu</i>
+                    </a>
+                    <!-- Navigation links (hidden by default) -->
+                    <div id="myLinks">
+                                <div class="btn-group" role="group">
+                                    <button data-trans="view-cards" type="button" class="btn btn-secondary"
+                                        onclick="onSetView('cards')">Cards</button>
+                                    <button data-trans="view-table"" type=" button" class="btn btn-secondary"
+                                        onclick="onSetView('table')">Table</button>
+                                </div>
+                        <select class="lang-select" onchange="onSetLang(this.value)">
+                            <option value="en">English</option>
+                            <option value="he">עברית</option>
+                        </select>
+                        <h2 data-trans="filter-header">Filter</h2>
+                        <div class="filters-options">
+                            <input data-trans="filter-txt" class="txt-search" type="text"
+                                oninput="onSetFilterBy({txt: this.value})" placeholder="Type something..." />
+                            <label data-trans="min-rate" for="min-rate">Min Rate</label>
+                            <input id="min-rate" type="range" min="0" max="10" value="0"
+                                onchange="this.title=this.value;onSetFilterBy({minRate: this.value})" />
 
-                <label data-trans="max-price" for="max-price">Max Price</label>
-                <input type="range" min="0" max="200" value="100"
-                    onchange="this.title=this.value;onSetFilterBy({maxPrice: this.value})" />
-                <button data-trans="reset-filters" class="reset-btn" onclick="onResetFilters()">Reset Filters</button>
+                            <label data-trans="max-price" for="max-price">Max Price</label>
+                            <input type="range" min="0" max="200" value="100"
+                                onchange="this.title=this.value;onSetFilterBy({maxPrice: this.value})" />
+                            <button data-trans="reset-filters" class="reset-btn" onclick="onResetFilters()">Reset
+                                Filters</button>
+                            <button data-trans="add-book" class="add-book" onClick="onAddBook()">Add Book</button>
+
+                        </div>
+                    </div>
+                </div>
+
             </section>
-            <button data-trans="add-book" class="add-book" onClick="onAddBook()">Add Book</button>
         </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button data-trans="view-cards" type="button" class="btn btn-secondary" onclick="onSetView('cards')">Cards</button>
-            <button data-trans="view-table"" type="button" class="btn btn-secondary" onclick="onSetView('table')">Table</button>
-          </div>
-
+        <h3 data-trans="books-header">Books</h3>
         <div class="books-container">
         </div>
+
         <div class="nav-btns">
             <button data-trans="prev-page" class="prev-page-btn" onClick="onPrevPage()" disabled>Previous Page</button>
             <button data-trans="next-page" class="next-page-btn" onClick="onNextPage()">Next Page</button>
@@ -52,8 +69,8 @@
     <div class="book-modal">
         <h3></h3>
         <img></img>
-        <h4>Book Price <span></span> </h4>
-        <h5>Book Rating <span></span> </h5>
+        <h4 data-trans="book-price">Book Price <span></span> </h4>
+        <h5 data-trans="book-rate">Book Rating <span></span> </h5>
         <div class="counter">
             <span onClick="onUpdateCounter('-')">-</span>
             <input class="counter-value" type="number" value="0" min="1" max="10">

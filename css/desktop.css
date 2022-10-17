@@ -1,8 +1,20 @@
 .container{
-    width: 50vw;
+    min-width: 100%;
 }
 
-.control{
-    width: 50px;
-    height: 30px;
+.books-container{
+    width: 50vw;
+    margin-right: auto;
+    margin-left: auto;
 }
+
+.topnav{
+    margin: auto;
+}
+
+.books-control{
+    display: flex;
+}
+
+
+

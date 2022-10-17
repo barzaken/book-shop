@@ -63,7 +63,15 @@ const gTrans = {
     'view-table': {
         en: 'table',
         he: 'טבלה'
-    }
+    },
+    'menu': {
+        en: ' Menu',
+        he: ' תפריט'
+    },
+    'books-header': {
+        en: ' Books',
+        he: ' ספרים'
+    },
 }
 
 let gCurrLang = 'en'

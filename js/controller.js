@@ -28,7 +28,7 @@ function readSearchParams() {
     onSetFilterBy({ txt })
     onSetFilterBy({ maxPrice })
     onSetFilterBy({ minRate })
-    doTrans(gCurrLang)
+    onSetLang(gCurrLang)
 }
 
 function onSetView(view){
@@ -67,7 +67,7 @@ function renderBooks() {
               <h5 class="card-title">${book.name}</h5>
               <p class="card-text">price : ${book.price}</p>
               <p class="card-text">rate : ${book.rate}</p>
-              <div class="btn-group" role="group" aria-label="Basic example">
+              <div class="btn-group" role="group">
                     <button type="button" class="btn btn-primary" onclick="onReadBook('${book.id}')">Read</button>
                      <button type="button" class="btn btn-primary" onclick="onUpdateBook('${book.id}')">Update</button>
                      <button type="button" class="btn btn-primary" onclick="onDeleteBook('${book.id}')">Delete</button>
@@ -89,8 +89,6 @@ function onReadBook(id) {
 }
 
 function openModal(book) {
-
-    console.log('first')
     gIsModalShown = true;
     var elModal = document.querySelector('.book-modal')
     elModal.querySelector('h3').innerText = book.name
@@ -190,3 +188,11 @@ function onSortClicked(prop) {
     renderBooks()
 }
 
+function onOpenFilters() {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }

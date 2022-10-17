@@ -1,97 +1,199 @@
-.container{
-    box-sizing: border-box;
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
+
+
+html {
+    margin: 0;
+
+}
+
+body.rtl {
+    direction: rtl;
+}
+
+
+.container {
     display: flex;
     flex-direction: column;
-    margin: auto;
+    min-height: 100vh;
+    background-color: #57bdff;
 }
 
-h1{
-    margin: 0;
-    margin-bottom: 10px;
+h1 {
     text-align: center;
-}
-
-.books-filter{
-    display: flex;
-    flex-direction: column;
-    flex-basis: 20%;
-    text-align: center;
-}
-h2{
-    margin: 0;
-}
-.txt-search{
-    width: 50%;
-    margin: auto;
-}
-.reset-btn{
-    width: 50%;
-    margin: auto;
-}
-
-
-
-
-.add-book{
-    width:25%;
-    margin: 0 auto;
-}
-
-
-
-
-/* .books-container{
-    flex-basis: 55%;
-    display: flex;
-} */
-
-/* .books-table{
-    flex-basis: 100%;
-} */
-
-table,td,th{
-    border: 1px solid black;
-    border-collapse: collapse;
-    table-layout: fixed;
-    text-align: center;
-}
-
-.control{
-    margin: 0 auto;
-    padding: 10%;
-    flex-wrap: nowrap;
-}
-
-.delete-btn{
-    background-color: red;
-}
-.update-btn{
-    background-color: yellow;
-}
-.read-btn{
-    background-color: blue;
-}
-
-
-
-
-
-.nav-btns{
-    margin-top: 10px;
     flex-basis: 10%;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.books-control {
+    flex-basis: 20%;
     display: flex;
+    flex-direction: column;
+    margin-bottom: 150px;
+}
+
+.lang-select {
+    display: flex;
+    margin: auto;
+    text-align: center;
+    width: max-content;
+}
+
+
+.filters-options {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    margin: auto;
+}
+
+
+.add-book {
+    text-align: center;
+    width: 50vw;
+    margin: auto;
+}
+
+.books-container {
+    flex-basis: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-btns {
+    flex-basis: 10%;
+    text-align: center;
+}
+
+.card {
+    margin: 50px auto;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.card-img-top {
+    height: 300px;
+}
+
+
+
+
+
+
+
+
+
+.topnav {
+    overflow: hidden;
+    background-color: #90fbfb;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+    display: none;
+}
+
+/* Style navigation menu links */
+.topnav a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+    background: black;
+    right: 0;
+    top: 0;
+}
+
+/* Add a grey background color on mouse-over */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Style the active link (or home/logo) */
+.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+
+
+
+
+
+.book-modal img {
+    height: 100px;
+}
+
+.book-modal {
+    background-color: #111;
+    padding: 10px;
+    position: absolute;
+    top: 0px;
+    left: 150%;
+    height: 40vh;
+    min-width: 300px;
+    text-align: center;
+    color: white;
+}
+
+.book-modal.open {
+    left: 10%;
+    transition: left .5s;
+}
+
+.book-modal h3 {
+    color: pink;
+    text-decoration: overline;
+    text-transform: capitalize;
+}
+
+.book-modal h4 span {
+    color: pink;
+}
+
+.book-modal>p {
+    text-align: left;
+}
+
+.counter {
+    width: 150px;
+    margin: auto;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
-.next-page-btn{
-    flex-basis: 25%;
-    height: 50px;
+.counter input {
+    width: 50px;
+    border: 0;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    background: #0052cc;
+    color: #fff;
+    appearance: none;
+    outline: 0;
 }
 
-.prev-page-btn{
-    flex-basis: 25%;
-    height: 50px;
+.counter span {
+    display: block;
+    font-size: 25px;
+    padding: 0 10px;
+    cursor: pointer;
+    color: #0052cc;
+    user-select: none;
 }
